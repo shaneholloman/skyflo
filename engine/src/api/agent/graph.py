@@ -311,10 +311,6 @@ class WorkflowGraph:
     async def invoke(self, initial_state: Dict[str, Any], **kwargs):
         try:
             await self._ensure_compiled()
-            try:
-                await self.mcp_client._ensure_client()
-            except Exception:
-                pass
 
             start_time_value = get_state_value(initial_state, "start_time")
             if start_time_value is None:
